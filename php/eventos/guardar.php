@@ -4,13 +4,12 @@
 	$idusuario = $_POST["idusuario"];	
 	$opcion = $_POST["opcion"];
 
-
 	if($opcion == "registrar" || $opcion == "modificar"){//obtener el valor de los campos
 		$horainicio = $_POST["horainicio"];
 		$horafin = $_POST["horafin"];
 		$fecha = $_POST["fecha"];
 		$estado = $_POST["estado"];
-		$marca = $_POST["marca"];
+		$id_cliente = $_POST["id_cliente"];
 		$costomarca = $_POST["costomarca"];
 		$pagopromotora = $_POST["pagopromotora"];
 		$pagocoordinador = $_POST["pagocoordinador"];
@@ -32,7 +31,8 @@
 						$informacion["respuesta"] = "EXISTE";
 						echo json_encode($informacion);
 					}else{
-						registrar($horainicio, $horafin, $fecha, $estado, $marca, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador);
+						registrar($horainicio, $horafin, $fecha, $estado, $id_cliente, $costomarca, 
+						$pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador);
 					}									
 				}else{
 					$informacion["respuesta"] = "VACIO";
@@ -40,7 +40,8 @@
 				}
 			break;
 		case 'modificar':
-			modificar($idusuario,$horainicio, $horafin, $fecha, $estado, $marca, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador);
+			modificar($idusuario,$horainicio, $horafin, $fecha, $estado, $id_cliente, $costomarca, 
+			$pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador);
 			break;		
 		case 'eliminar':
 			eliminar($idusuario, $conexion);
@@ -58,7 +59,7 @@
 		return $existe_usuario;
 	}
 
-	function registrar($horainicio, $horafin, $fecha, $estado, $marca, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador){
+	function registrar($horainicio, $horafin, $fecha, $estado, $id_cliente, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador){
 		
 		//ulitimo registro
 
@@ -67,7 +68,7 @@
 
 		$ultimoId = mysqli_fetch_assoc($resultado)['id']+1;
 		
-		$query = "INSERT INTO eventos VALUES( $ultimoId,'$horainicio', '$horafin', '$fecha', '$estado', '$marca', '$costomarca', '$pagopromotora', '$pagocoordinador', '$logistica', '$nombreevento', '$id_promotora', '$id_coordinador');";
+		$query = "INSERT INTO eventos VALUES( $ultimoId,'$horainicio', '$horafin', '$fecha', '$estado', '$id_cliente', '$costomarca', '$pagopromotora', '$pagocoordinador', '$logistica', '$nombreevento', '$id_promotora', '$id_coordinador');";
 		$resultado = mysqli_query($conexion, $query);	
 		
 		verificar_resultado($resultado);
@@ -75,11 +76,11 @@
 		
 	}
 
-	function modificar($idusuario,$horainicio, $horafin, $fecha, $estado, $marca, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador){	
+	function modificar($idusuario,$horainicio, $horafin, $fecha, $estado, $id_cliente, $costomarca, $pagopromotora, $pagocoordinador, $logistica, $nombreevento,$conexion,$id_promotora,$id_coordinador){	
 		$query= "UPDATE eventos SET 	horainicio='$horainicio', 
 										horafin='$horafin', 
 										estado='$estado', 
-										marca='$marca', 
+										id_cliente='$id_cliente', 
 										costomarca='$costomarca', 
 										pagopromotora='$pagopromotora', 
 										pagocoordinador='$pagocoordinador', 

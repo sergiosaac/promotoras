@@ -124,7 +124,7 @@
 				<div class="form-group">
 					<label for="apellidos" class="col-sm-2 control-label">Marca</label>
 					<div class="col-sm-8">
-						<select class="form-control" name="marca" id="marca">
+						<select class="form-control" name="id_cliente" id="id_cliente">
 							<option value="" selected > Elige un cliente </option>
 							<?php foreach ($array['clientes'] as $cliente ) { ?>
 								<option value="<?= $cliente['id'] ?>"> <?= $cliente['nombre'] ?> </option>	
@@ -337,7 +337,7 @@
 			$("#nombreevento").val("").focus();
 			$("#fecha").val("");
 			$("#estado").val("");
-			$("#marca").val("");
+			$("#id_cliente").val("");
 			$("#costomarca").val("");
 			$("#pagopromotora").val("");
 			$("#pagocoordinador").val("");
@@ -361,13 +361,13 @@
 					{"data":"horafin"},
 					{"data":"fecha"},
 					{"data":"estado"},
-					{"data":"marca"},
+					{"data":"nombreCliente"},
 					{"data":"costomarca"},
 					{"data":"pagopromotora"},
 					{"data":"pagocoordinador"},
 					{"data":"logistica"},
-					{"data":"id_promotora"},
-					{"data":"id_coordinador"},
+					{"data":"nombrePromotora"},
+					{"data":"nombreCoordinador"},
 					{"defaultContent": "<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
 				],
 				"language": idioma_espanol,
@@ -416,17 +416,23 @@
 
 		var obtener_data_editar = function(tbody, table){
 			$(tbody).on("click", "button.editar", function(){
+				
 				var data = table.row( $(this).parents("tr") ).data();
+				
 				var idusuario = $("#idusuario").val( data.id ),
 				nombreevento = $("#nombreevento").val( data.nombreevento ),
 				horainicio = $("#horainicio").val( data.horainicio ),
 				horafin = $("#horafin").val( data.horafin ),
 				fecha = $("#fecha").val( data.fecha ),
-				marca = $("#marca").val( data.marca ),
+				id_cliente = $("#id_cliente").val( data.id_cliente ),
 				costomarca = $("#costomarca").val( data.costomarca ),
 				pagopromotora = $("#pagopromotora").val( data.pagopromotora ),
 				pagocoordinador = $("#pagocoordinador").val( data.pagocoordinador ),
 				logistica = $("#logistica").val( data.logistica ),
+				
+				id_promotora = $("#id_promotora").val( data.id_promotora ),
+				id_coordinador = $("#id_coordinador").val( data.id_coordinador ),
+
 				opcion = $("#opcion").val("modificar");
 				
 				$("#cuadro2").slideDown("slow");
