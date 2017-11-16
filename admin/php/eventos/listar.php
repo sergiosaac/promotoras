@@ -17,7 +17,7 @@
 
 			$registro['nombreCliente'] = obtenerCliente($conexion,$registro['id_cliente'])['nombre'];
 			$registro['nombrePromotora'] = obtenerPromotora($conexion,$registro['id_promotora'])['nombre']." ".obtenerPromotora($conexion,$registro['id_promotora'])['apellidos'];
-			$registro['nombreCoordinador'] = obtenerCoordinador($conexion,$registro['id_cliente'])['nombre']." ".obtenerCoordinador($conexion,$registro['id_cliente'])['apellidos'];
+			$registro['nombreCoordinador'] = obtenerCoordinador($conexion,$registro['id_coordinador'])['nombre']." ".obtenerCoordinador($conexion,$registro['id_coordinador'])['apellidos'];
 		}
 
 		echo json_encode($array);
