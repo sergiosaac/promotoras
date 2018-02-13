@@ -84,10 +84,10 @@
 		    border-top:0px solid #7eae60;
 			border-right:0px solid #7eae60;
 			border-bottom:0px solid #7eae60;
-			border-left:10px solid #7eae60; 
+			border-left:10px solid #337ab7; 
 			margin: 20px; padding: 20px;"> 
 
-			Administracion de eventos 
+			Administracion de coordinadores 
 
 		</h3>
 	  	

@@ -80,17 +80,15 @@
 
 	<div class="row">
 
-	    <h3 style="
-		    border-top:0px solid #7eae60;
-			border-right:0px solid #7eae60;
-			border-bottom:0px solid #7eae60;
-			border-left:10px solid #7eae60; 
+		<h3 style="
+		    
+			border-left:10px solid pink; 
 			margin: 20px; padding: 20px;"> 
 
-			Administracion de eventos 
+			Administracion de promotoras 
 
 		</h3>
-	  	
+
 		<div id="cuadro2" class="col-sm-12 col-md-12 col-lg-12 ocultar">
 			<form class="form-horizontal" action="" method="POST">
 				<div class="form-group">

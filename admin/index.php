@@ -25,43 +25,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-			<a class="navbar-brand" href="index.php">
-				 Inicio</a>
-			</div>
-			<ul class="nav navbar-nav">
-			
-			<li class="active" >
-				<a href="#">
-				<span class="glyphicon glyphicon-folder-open"></span> Eventos
-				</a>
-			</li>
-			<li>
-				<a onclick="alert('En desarrollo! Prueba mas tarde.')" href="#"> 
-					<span class="glyphicon glyphicon-user"></span> Promotoras
-				</a>
-			</li>
-			<li>
-				<a onclick="alert('En desarrollo! Prueba mas tarde.')" href="#"> 
-					<span class="glyphicon glyphicon-calendar"></span> Coordinadores
-				</a>
-			</li>
-			<li>
-				<a onclick="alert('En desarrollo! Prueba mas tarde.')" href="#"> 
-					<span class="glyphicon glyphicon-phone"></span> Clientes
-				</a>
-			</li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-			
-			<li><a href="../cerrar.php"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
-			</ul>
-		</div>
-	</nav>
-
+		<?php require 'header.php'; ?>
 	
 		
 		<div class="container">
@@ -77,7 +41,6 @@
 				</h4>
 			  </a>
 
-			  
 
 			  <a href="eventos.php" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
@@ -85,19 +48,19 @@
 				</h4>
 			  </a>
 
-			  <a href="eventos.php" style="padding: 30px;" class="list-group-item">
+			  <a href="promotoras.php" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://www.externateam.com/wp-content/uploads/2016/02/candidatas.png"> 	Promotoras
 				</h4>
 			  </a>
 
-			  <a href="eventos.php" style="padding: 30px;" class="list-group-item">
+			  <a href="coordinadores.php" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://www.unimayor.edu.co/web/uploads/contenidos/docente.png"> 	Coordinadores
 				</h4>
 			  </a>
 
-			  <a href="eventos.php" style="padding: 30px;" class="list-group-item">
+			  <a href="clientes.php" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://www.seidor.com/content/dam/seidor/img/icono-clientes.png"> 	Clientes
 				</h4>
@@ -117,21 +80,21 @@
 				</h4>
 			  </a>
 
-			  <a href="#" style="padding: 30px;" class="list-group-item">
+			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Generar reporte
 				</h4>
 			  </a>
 
-			  <a href="#" style="padding: 30px;" class="list-group-item">
+			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/10/Billing-icon.png"> 	Crear factura
 				</h4>
 			  </a>
 
-			  <a href="#" style="padding: 30px;" class="list-group-item">
+			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
-			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/11/document-file-icon.png"> 	Administrar facturas
+			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/11/document-file-icon.png"> Historial de facturas
 				</h4>
 			  </a>
 
@@ -144,6 +107,37 @@
         <hr>
 
       </div>
+
+      <!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Primeros pasos en su sistema:</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Buenas, gracias por utilizar el sistema.</p>
+		        <p>
+		        	Esta la primera version del sistema, donde estan terminados los ABMS. 
+		        	Favor si se pueden cargar datos para tener informacion y hacer las pruebas de las funcionalidades correspondientes.
+		        </p>
+		        <p>
+		        	Cargar las tablas de PROMOTORAS, CLIENTES, COORDINADORES y EVENTOS.
+		        </p>
+		        <p>
+		        	Cualquier cosas favor comunicarse.
+		        </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
 
 	<script src="js/jquery-1.12.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -159,6 +153,18 @@
 	<script src="js/vfs_fonts.js"></script>
 	<!--Librerias para botones de exportación-->
 	<script src="js/buttons.html5.min.js"></script>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function () {
+		    $("#myModal").modal("show");
+
+		    $('.noTodavia').click(function () {
+				$("#myModal").modal("show");		    	
+		    });
+		});
+		    
+	</script>
 
 	
 </body>
