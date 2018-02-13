@@ -8,56 +8,7 @@
 
 	require('php/conexion.php');
 
-	$array = array();
-
-	$query = "SELECT * FROM promotoras;";
-	$resultado = mysqli_query($conexion, $query);
 	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["promotoras"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-	
-
-	//-----
-
-	$query = "SELECT * FROM clientes;";
-	$resultado = mysqli_query($conexion, $query);
-	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["clientes"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-
-	//-----
-
-	$query = "SELECT * FROM coordinadores;";
-	$resultado = mysqli_query($conexion, $query);
-	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["coordinadores"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-
-	mysqli_close( $conexion );
 
 ?>
 
@@ -97,89 +48,31 @@
 				</div>
 				<input type="hidden" id="idusuario" name="idusuario" value="0">
 				<input type="hidden" id="opcion" name="opcion" value="registrar">
+				
 				<div class="form-group">
 					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
-					<div class="col-sm-8"><input id="nombreevento" name="nombreevento" type="text" class="form-control"  autofocus></div>				
+					<div class="col-sm-8"><input id="nombre" name="nombre" type="text" class="form-control"  autofocus>
+					</div>		
 				</div>
+
 				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Hora inicio</label>
-					<div class="col-sm-8"><input id="horainicio" name="horainicio" type="time" class="form-control" ></div>
+					<label for="nombre" class="col-sm-2 control-label">Apellido</label>
+					<div class="col-sm-8"><input id="apellidos" name="apellidos" type="text" class="form-control"  autofocus>
+					</div>		
 				</div>
+
 				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Hora fin</label>
-					<div class="col-sm-8"><input id="horafin" name="horafin" type="time" class="form-control" ></div>
+					<label for="nombre" class="col-sm-2 control-label">Edad</label>
+					<div class="col-sm-8"><input id="edad" name="edad" type="text" class="form-control"  autofocus>
+					</div>		
 				</div>
+
 				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Fecha</label>
-					<div class="col-sm-8"><input id="fecha" name="fecha" type="date" class="form-control" maxlength="8" ></div>
+					<label for="nombre" class="col-sm-2 control-label">Estado</label>
+					<div class="col-sm-8"><input id="estado" name="estado" type="text" class="form-control"  autofocus>
+					</div>		
 				</div>
 				
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Estado</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="estado" id="estado">
-						<option value="" selected > Elige un estado </option>
-							<option value="Pendiente">Pendiente</option>
-							<option value="Terminado">Terminado</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Marca</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_cliente" id="id_cliente">
-							<option value="" selected > Elige un cliente </option>
-							<?php foreach ($array['clientes'] as $cliente ) { ?>
-								<option value="<?= $cliente['id'] ?>"> <?= $cliente['nombre'] ?> </option>	
-							<?php } ?>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Promotora</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_promotora" id="id_promotora">
-							<option value="" selected > Elige una promotora </option>
-							<?php foreach ($array['promotoras'] as $promotora ) { ?>
-								<option value="<?= $promotora['id'] ?>"> <?= $promotora['nombre'].' '.$promotora['apellidos'] ?> </option>	
-							<?php } ?>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Coordinador encargado</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_coordinador" id="id_coordinador">
-							<option value="" selected > Elige una coordnador </option>
-							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
-								<option value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </option>	
-							<?php } ?>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Costo a marca</label>
-					<div class="col-sm-8"><input id="costomarca" name="costomarca" type="text" class="form-control"  autofocus></div>				
-				</div>
-				
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Pago a promotora</label>
-					<div class="col-sm-8"><input id="pagopromotora" name="pagopromotora" type="text" class="form-control"  autofocus></div>				
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Pago a coordinador</label>
-					<div class="col-sm-8"><input id="pagocoordinador" name="pagocoordinador" type="text" class="form-control"  autofocus></div>				
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Logística</label>
-					<div class="col-sm-8"><input id="logistica" name="logistica" type="text" class="form-control"  autofocus></div>				
-				</div>
 	
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8">
@@ -204,17 +97,9 @@
 					<thead>
 						<tr>								
 							<th>Nombre</th>
-							<th>Hora inicio</th>
-							<th>Hora fin</th>
-							<th>Fecha</th>
+							<th>Apellido</th>
+							<th>Edad</th>
 							<th>Estado</th>
-							<th>Marca</th>
-							<th>Costo a marca</th>
-							<th>Pago a promotora</th>
-							<th>Pago a coordinador</th>
-							<th>Logística</th>
-							<th>Promotora</th>
-							<th>Coordinador</th>
 							<th></th>											
 						</tr>
 					</thead>					
@@ -280,7 +165,7 @@
 				var frm = $(this).serialize();
 				$.ajax({
 					method: "POST",
-					url: "php/eventos/guardar.php",
+					url: "php/promotoras/guardar.php",
 					data: frm
 				}).done( function( info ){
 					console.log( info );
@@ -361,21 +246,13 @@
 				"destroy":true,
 				"ajax":{
 					"method":"POST",
-					"url": "php/eventos/listar.php"
+					"url": "php/promotoras/listar.php"
 				},
 				"columns":[
-					{"data":"nombreevento"},
-					{"data":"horainicio"},
-					{"data":"horafin"},
-					{"data":"fecha"},
+					{"data":"nombre"},
+					{"data":"apellidos"},
+					{"data":"edad"},
 					{"data":"estado"},
-					{"data":"nombreCliente"},
-					{"data":"costomarca"},
-					{"data":"pagopromotora"},
-					{"data":"pagocoordinador"},
-					{"data":"logistica"},
-					{"data":"nombrePromotora"},
-					{"data":"nombreCoordinador"},
 					{"defaultContent": "<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
 				],
 				"language": idioma_espanol,
@@ -428,19 +305,10 @@
 				var data = table.row( $(this).parents("tr") ).data();
 				
 				var idusuario = $("#idusuario").val( data.id ),
-				nombreevento = $("#nombreevento").val( data.nombreevento ),
-				horainicio = $("#horainicio").val( data.horainicio ),
-				horafin = $("#horafin").val( data.horafin ),
-				fecha = $("#fecha").val( data.fecha ),
-				id_cliente = $("#id_cliente").val( data.id_cliente ),
-				costomarca = $("#costomarca").val( data.costomarca ),
-				pagopromotora = $("#pagopromotora").val( data.pagopromotora ),
-				pagocoordinador = $("#pagocoordinador").val( data.pagocoordinador ),
-				logistica = $("#logistica").val( data.logistica ),
+				nombre = $("#nombre").val( data.nombre ),
+				apellidos = $("#apellidos").val( data.apellidos ),
+				edad = $("#edad").val( data.edad ),
 				estado = $("#estado").val( data.estado ),
-				
-				id_promotora = $("#id_promotora").val( data.id_promotora ),
-				id_coordinador = $("#id_coordinador").val( data.id_coordinador ),
 
 				opcion = $("#opcion").val("modificar");
 				

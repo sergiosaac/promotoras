@@ -29,13 +29,13 @@
   <title> Login Admin </title>
       <link rel="stylesheet" href="css/style.css">  
 </head>
-<body>
+<body background="https://k37.kn3.net/7BBAF81FB.jpg">
 
-  <div class="login-page" style=" float: left; margin: 5px">
+ <!--  <div class="login-page" style=" float: left; margin: 5px">
     <img style="-webkit-box-shadow: 2px 4px 17px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 2px 4px 17px 0px rgba(0,0,0,0.75);
 box-shadow: 2px 4px 17px 0px rgba(0,0,0,0.75);filter:brightness(0.6);" src="sitema.png" height="500" width="900">
-  </div>
+  </div> -->
 
   <div class="login-page" style="  float: right; margin: 70px">
     <div class="form" >
@@ -48,7 +48,7 @@ box-shadow: 2px 4px 17px 0px rgba(0,0,0,0.75);filter:brightness(0.6);" src="site
       <form class="login-form" action="index.php" method="POST">
         <input type="text" name="usuario" placeholder="usuario"/>
         <input type="password" name="password" placeholder="password"/>
-        <button>login</button>
+        <button>entrar</button>
         <p class="message" onclick="alert('Contacta al número 0992 310 230');"> Olvidaste tu pass ? </p>
 
         <?php if (isset($incorrecto)) { ?>
