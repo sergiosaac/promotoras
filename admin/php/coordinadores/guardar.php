@@ -9,18 +9,17 @@
 		
 		$nombre = $_POST["nombre"];
 		$apellidos = $_POST["apellidos"];
-		$edad = $_POST["edad"];
-		$estado = $_POST["estado"];		
+
 	}
 
 	$informacion = [];
 
 	switch ( $opcion ) {
 		case 'registrar':
-			registrar($nombre, $apellidos, $edad, $estado,$conexion);
+			registrar($nombre, $apellidos,$conexion);
 			break;
 		case 'modificar':
-			modificar($id,$nombre, $apellidos, $edad, $estado,$conexion);
+			modificar($id,$nombre, $apellidos, $conexion);
 			break;		
 		case 'eliminar':
 			eliminar($id, $conexion);
@@ -33,27 +32,26 @@
 
 	
 
-	function registrar($nombre, $apellidos, $edad, $estado,$conexion){
+	function registrar($nombre, $apellidos,$conexion){
 		
 		//ulitimo registro
 
-		$query = "SELECT * FROM promotoras ORDER BY id DESC";
+		$query = "SELECT * FROM coordinadores ORDER BY id DESC";
 		$resultado = mysqli_query($conexion, $query);
 
 		$ultimoId = mysqli_fetch_assoc($resultado)['id']+1;
 		
-		$query = "INSERT INTO promotoras VALUES( $ultimoId,'$nombre', '$apellidos', '$edad', '$estado');";
+		$query = "INSERT INTO coordinadores VALUES( $ultimoId,'$nombre', '$apellidos');";
 		$resultado = mysqli_query($conexion, $query);	
 		
 		verificar_resultado($resultado);
 		cerrar($conexion);	
 	}
 
-	function modificar($id,$nombre, $apellidos, $edad, $estado,$conexion){	
-		$query= "UPDATE promotoras SET 	nombre='$nombre', 
-										apellidos='$apellidos', 
-										edad='$edad', 
-										estado='$estado'
+	function modificar($id,$nombre, $apellidos,$conexion){	
+		$query= "UPDATE coordinadores SET 	nombre='$nombre', 
+										apellidos='$apellidos'
+										
 
 										WHERE id=$id";
 		$resultado = mysqli_query($conexion, $query);
@@ -63,7 +61,7 @@
 
 	function eliminar($id, $conexion){
 
-		$query = "DELETE FROM promotoras WHERE id=$id";
+		$query = "DELETE FROM coordinadores WHERE id=$id";
 
 		$resultado = mysqli_query($conexion, $query);
 		verificar_resultado( $resultado );

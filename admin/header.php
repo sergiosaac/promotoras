@@ -6,7 +6,7 @@
 		</div>
 		<ul class="nav navbar-nav">
 		
-		<li class="active" >
+		<li>
 			<a href="eventos.php">
 			<span class="glyphicon glyphicon-folder-open"></span> Eventos
 			</a>

@@ -28,14 +28,15 @@
 <body>
 
 	<?php require 'header.php'; ?>
-
-	<div class="row">
+	<div class="container">
+		
+		<div class="row">
 
 		<h3 style="
 		    
 			border-left:10px solid pink; 
 			margin: 20px; padding: 20px;"> 
-
+			<img height="60" width="60" src="http://www.externateam.com/wp-content/uploads/2016/02/candidatas.png">
 			Administracion de promotoras 
 
 		</h3>
@@ -46,7 +47,7 @@
 					<h3 class="col-sm-offset-2 col-sm-8 text-center">					
 					Formulario de Registro de Eventos</h3>
 				</div>
-				<input type="hidden" id="idusuario" name="idusuario" value="0">
+				<input type="hidden" id="id" name="id" value="0">
 				<input type="hidden" id="opcion" name="opcion" value="registrar">
 				
 				<div class="form-group">
@@ -72,6 +73,8 @@
 					<div class="col-sm-8"><input id="estado" name="estado" type="text" class="form-control"  autofocus>
 					</div>		
 				</div>
+
+				
 				
 	
 				<div class="form-group">
@@ -109,7 +112,7 @@
 	</div>
 	<div>
 		<form id="frmEliminarUsuario" action="" method="POST">
-			<input type="hidden" id="idusuario" name="idusuario" value="">
+			<input type="hidden" id="id" name="id" value="">
 			<input type="hidden" id="opcion" name="opcion" value="eliminar">
 			<!-- Modal -->
 			<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
@@ -131,6 +134,8 @@
 			</div>
 			<!-- Modal -->
 		</form>
+	</div>
+
 	</div>
 	
 	<script src="js/jquery-1.12.3.js"></script>
@@ -179,12 +184,12 @@
 
 		var eliminar = function(){
 			$("#eliminar-usuario").on("click", function(){
-				var idusuario = $("#frmEliminarUsuario #idusuario").val(),
+				var id = $("#frmEliminarUsuario #id").val(),
 					opcion = $("#frmEliminarUsuario #opcion").val();
 				$.ajax({
 					method:"POST",
-					url: "php/eventos/guardar.php",
-					data: {"idusuario": idusuario, "opcion": opcion}
+					url: "php/promotoras/guardar.php",
+					data: {"id": id, "opcion": opcion}
 				}).done( function( info ){
 					var json_info = JSON.parse( info );
 					mostrar_mensaje( json_info );
@@ -222,18 +227,11 @@
 
 		var limpiar_datos = function(){
 			$("#horainicio").val("registrar");
-			$("#horafin").val("");
-			$("#nombreevento").val("").focus();
-			$("#fecha").val("");
+			$("#nombre").val("");
+			$("#edad").val("").focus();
+			$("#apellidos").val("");
 			$("#estado").val("");
-			$("#id_cliente").val("");
-			$("#costomarca").val("");
-			$("#pagopromotora").val("");
-			$("#pagocoordinador").val("");
-			$("#logistica").val("");
-
-			$("#id_coordinador").val("");
-			$("#id_promotora").val("");
+			
 			
 		}
 
@@ -304,7 +302,7 @@
 				
 				var data = table.row( $(this).parents("tr") ).data();
 				
-				var idusuario = $("#idusuario").val( data.id ),
+				var id = $("#id").val( data.id ),
 				nombre = $("#nombre").val( data.nombre ),
 				apellidos = $("#apellidos").val( data.apellidos ),
 				edad = $("#edad").val( data.edad ),
@@ -320,7 +318,7 @@
 		var obtener_id_eliminar = function(tbody, table){
 			$(tbody).on("click", "button.eliminar", function(){
 				var data = table.row( $(this).parents("tr") ).data();
-				var idusuario = $("#frmEliminarUsuario #idusuario").val( data.id );
+				var id = $("#frmEliminarUsuario #id").val( data.id );
 			});
 		}
 

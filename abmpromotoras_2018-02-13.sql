@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.21-0ubuntu0.16.04.1)
 # Base de datos: abmpromotoras
-# Tiempo de Generación: 2018-02-13 04:30:55 +0000
+# Tiempo de Generación: 2018-02-13 15:56:58 +0000
 # ************************************************************
 
 
@@ -38,8 +38,7 @@ LOCK TABLES `clientes` WRITE;
 
 INSERT INTO `clientes` (`id`, `nombre`, `contacto`, `numerocontacto`)
 VALUES
-	(1,'Tigo','Fernando Sanabira','0981232312'),
-	(2,'Personal','Maria Vazquez','0971332776');
+	(1,'TIGO','Juan Perez','0982123123');
 
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -62,8 +61,7 @@ LOCK TABLES `coordinadores` WRITE;
 
 INSERT INTO `coordinadores` (`id`, `nombre`, `apellidos`)
 VALUES
-	(1,'Juan ','Perez'),
-	(2,'Maria','Gonzalez');
+	(1,'Jose Maria','Olmedo');
 
 /*!40000 ALTER TABLE `coordinadores` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -96,8 +94,7 @@ LOCK TABLES `eventos` WRITE;
 
 INSERT INTO `eventos` (`id`, `horainicio`, `horafin`, `fecha`, `estado`, `id_cliente`, `costomarca`, `pagopromotora`, `pagocoordinador`, `logistica`, `nombreevento`, `id_promotora`, `id_coordinador`)
 VALUES
-	(1,'01:01','01:01','2017-01-01','Pendiente','2','1000','1000','100','Taxi','Concierto',2,2),
-	(2,'00:00','00:00','2019-01-02','Pendiente','1','10000','10000','sdaf','Taxi','asdf',1,1);
+	(2,'00:00','00:00','2019-01-02','Pendiente','1','10000','10000','2000','Taxi','Desfile en la costanera',1,1);
 
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -122,8 +119,7 @@ LOCK TABLES `promotoras` WRITE;
 
 INSERT INTO `promotoras` (`id`, `nombre`, `apellidos`, `edad`, `estado`)
 VALUES
-	(1,'Maria','Perez','21','Libre'),
-	(2,'Lorena','Gonzalez','26','Ocupada');
+	(1,'Mariana','Gomez','24','Disponible');
 
 /*!40000 ALTER TABLE `promotoras` ENABLE KEYS */;
 UNLOCK TABLES;

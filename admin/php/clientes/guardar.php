@@ -8,19 +8,19 @@
 	if($opcion == "registrar" || $opcion == "modificar"){
 		
 		$nombre = $_POST["nombre"];
-		$apellidos = $_POST["apellidos"];
-		$edad = $_POST["edad"];
-		$estado = $_POST["estado"];		
+		$contacto = $_POST["contacto"];
+		$numerocontacto = $_POST["numerocontacto"];
+
 	}
 
 	$informacion = [];
 
 	switch ( $opcion ) {
 		case 'registrar':
-			registrar($nombre, $apellidos, $edad, $estado,$conexion);
+			registrar($nombre, $contacto, $numerocontacto,$conexion);
 			break;
 		case 'modificar':
-			modificar($id,$nombre, $apellidos, $edad, $estado,$conexion);
+			modificar($id,$nombre,  $contacto, $numerocontacto, $conexion);
 			break;		
 		case 'eliminar':
 			eliminar($id, $conexion);
@@ -33,27 +33,27 @@
 
 	
 
-	function registrar($nombre, $apellidos, $edad, $estado,$conexion){
+	function registrar($nombre, $contacto, $numerocontacto,$conexion){
 		
 		//ulitimo registro
 
-		$query = "SELECT * FROM promotoras ORDER BY id DESC";
+		$query = "SELECT * FROM clientes ORDER BY id DESC";
 		$resultado = mysqli_query($conexion, $query);
 
 		$ultimoId = mysqli_fetch_assoc($resultado)['id']+1;
 		
-		$query = "INSERT INTO promotoras VALUES( $ultimoId,'$nombre', '$apellidos', '$edad', '$estado');";
+		$query = "INSERT INTO clientes VALUES( $ultimoId,'$nombre', '$contacto', '$numerocontacto');";
 		$resultado = mysqli_query($conexion, $query);	
 		
 		verificar_resultado($resultado);
 		cerrar($conexion);	
 	}
 
-	function modificar($id,$nombre, $apellidos, $edad, $estado,$conexion){	
-		$query= "UPDATE promotoras SET 	nombre='$nombre', 
-										apellidos='$apellidos', 
-										edad='$edad', 
-										estado='$estado'
+	function modificar($id,$nombre, $contacto, $numerocontacto,$conexion){	
+		$query= "UPDATE clientes SET 	nombre='$nombre', 
+										contacto='$contacto',
+										numerocontacto='$numerocontacto'
+										
 
 										WHERE id=$id";
 		$resultado = mysqli_query($conexion, $query);
@@ -63,7 +63,7 @@
 
 	function eliminar($id, $conexion){
 
-		$query = "DELETE FROM promotoras WHERE id=$id";
+		$query = "DELETE FROM clientes WHERE id=$id";
 
 		$resultado = mysqli_query($conexion, $query);
 		verificar_resultado( $resultado );

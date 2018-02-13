@@ -78,7 +78,8 @@
 
 	<?php require 'header.php'; ?>
 
-	<div class="row">
+	<div class="container">
+		<div class="row">
 
 	    <h3 style="
 		    border-top:0px solid #7eae60;
@@ -87,7 +88,7 @@
 			border-left:10px solid #7eae60; 
 			margin: 20px; padding: 20px;"> 
 
-			Administracion de eventos 
+			<img height="60" width="60" src="https://png.icons8.com/small/540/event-accepted-tentatively.png"> Administracion de eventos 
 
 		</h3>
 	  	
@@ -128,7 +129,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Marca</label>
+					<label for="apellidos" class="col-sm-2 control-label"><strong>Cliente</strong></label>
 					<div class="col-sm-8">
 						<select class="form-control" name="id_cliente" id="id_cliente">
 							<option value="" selected > Elige un cliente </option>
@@ -210,13 +211,13 @@
 							<th>Hora fin</th>
 							<th>Fecha</th>
 							<th>Estado</th>
-							<th>Marca</th>
 							<th>Costo a marca</th>
 							<th>Pago a promotora</th>
 							<th>Pago a coordinador</th>
 							<th>Logística</th>
-							<th>Promotora</th>
-							<th>Coordinador</th>
+							<th style="background-color: #d9534f;" >Cliente</th>
+							<th style="background-color: pink;" >Promotora</th>
+							<th style="background-color: #337ab7;" >Coordinador</th>
 							<th></th>											
 						</tr>
 					</thead>					
@@ -248,6 +249,7 @@
 			</div>
 			<!-- Modal -->
 		</form>
+	</div>
 	</div>
 	
 	<script src="js/jquery-1.12.3.js"></script>
@@ -371,11 +373,11 @@
 					{"data":"horafin"},
 					{"data":"fecha"},
 					{"data":"estado"},
-					{"data":"nombreCliente"},
 					{"data":"costomarca"},
 					{"data":"pagopromotora"},
 					{"data":"pagocoordinador"},
 					{"data":"logistica"},
+					{"data":"nombreCliente"},
 					{"data":"nombrePromotora"},
 					{"data":"nombreCoordinador"},
 					{"defaultContent": "<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	

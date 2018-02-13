@@ -8,57 +8,6 @@
 
 	require('php/conexion.php');
 
-	$array = array();
-
-	$query = "SELECT * FROM promotoras;";
-	$resultado = mysqli_query($conexion, $query);
-	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["promotoras"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-	
-
-	//-----
-
-	$query = "SELECT * FROM clientes;";
-	$resultado = mysqli_query($conexion, $query);
-	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["clientes"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-
-	//-----
-
-	$query = "SELECT * FROM coordinadores;";
-	$resultado = mysqli_query($conexion, $query);
-	
-	if( !$resultado )
-		die("Error, no se ejecutó la consulta.");
-	else{
-		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
-		while ( $data = mysqli_fetch_assoc($resultado)){
-			$array["coordinadores"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
-		}
-	}
-
-	mysqli_free_result( $resultado );
-
-	mysqli_close( $conexion );
-
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +27,8 @@
 
 	<?php require 'header.php'; ?>
 
-	<div class="row">
+	<div class="container">
+		<div class="row">
 
 	    <h3 style="
 		    border-top:0px solid #7eae60;
@@ -86,113 +36,46 @@
 			border-bottom:0px solid #d43f3a;
 			border-left:10px solid #d43f3a; 
 			margin: 20px; padding: 20px;"> 
-
+			<img height="60" width="60" src="http://www.seidor.com/content/dam/seidor/img/icono-clientes.png">
 			Administracion de clientes 
 
 		</h3>
 	  	
-		<div id="cuadro2" class="col-sm-12 col-md-12 col-lg-12 ocultar">
-			<form class="form-horizontal" action="" method="POST">
-				<div class="form-group">
-					<h3 class="col-sm-offset-2 col-sm-8 text-center">					
-					Formulario de Registro de Eventos</h3>
-				</div>
-				<input type="hidden" id="idusuario" name="idusuario" value="0">
-				<input type="hidden" id="opcion" name="opcion" value="registrar">
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Nombre</label>
-					<div class="col-sm-8"><input id="nombreevento" name="nombreevento" type="text" class="form-control"  autofocus></div>				
-				</div>
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Hora inicio</label>
-					<div class="col-sm-8"><input id="horainicio" name="horainicio" type="time" class="form-control" ></div>
-				</div>
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Hora fin</label>
-					<div class="col-sm-8"><input id="horafin" name="horafin" type="time" class="form-control" ></div>
-				</div>
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Fecha</label>
-					<div class="col-sm-8"><input id="fecha" name="fecha" type="date" class="form-control" maxlength="8" ></div>
-				</div>
-				
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Estado</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="estado" id="estado">
-						<option value="" selected > Elige un estado </option>
-							<option value="Pendiente">Pendiente</option>
-							<option value="Terminado">Terminado</option>
-						</select>
+			<div id="cuadro2" class="col-sm-12 col-md-12 col-lg-12 ocultar">
+				<form class="form-horizontal" action="" method="POST">
+					<div class="form-group">
+						<h3 class="col-sm-offset-2 col-sm-8 text-center">					
+						Formulario de Registro de coordinadores</h3>
 					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Marca</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_cliente" id="id_cliente">
-							<option value="" selected > Elige un cliente </option>
-							<?php foreach ($array['clientes'] as $cliente ) { ?>
-								<option value="<?= $cliente['id'] ?>"> <?= $cliente['nombre'] ?> </option>	
-							<?php } ?>
-						</select>
+					<input type="hidden" id="id" name="id" value="0">
+					<input type="hidden" id="opcion" name="opcion" value="registrar">
+					
+                    <div class="form-group">
+						<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+						<div class="col-sm-8"><input id="nombre" name="nombre" type="text" class="form-control"  autofocus>
+                        </div>				
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Promotora</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_promotora" id="id_promotora">
-							<option value="" selected > Elige una promotora </option>
-							<?php foreach ($array['promotoras'] as $promotora ) { ?>
-								<option value="<?= $promotora['id'] ?>"> <?= $promotora['nombre'].' '.$promotora['apellidos'] ?> </option>	
-							<?php } ?>
-						</select>
+					<div class="form-group">
+						<label for="apellidos" class="col-sm-2 control-label">Contacto</label>
+						<div class="col-sm-8"><input id="contacto" name="contacto" type="text" class="form-control" ></div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label for="apellidos" class="col-sm-2 control-label">Coordinador encargado</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="id_coordinador" id="id_coordinador">
-							<option value="" selected > Elige una coordnador </option>
-							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
-								<option value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </option>	
-							<?php } ?>
-						</select>
+					<div class="form-group">
+						<label for="apellidos" class="col-sm-2 control-label">Número de contacto</label>
+						<div class="col-sm-8"><input id="numerocontacto" name="numerocontacto" type="text" class="form-control" ></div>
 					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Costo a marca</label>
-					<div class="col-sm-8"><input id="costomarca" name="costomarca" type="text" class="form-control"  autofocus></div>				
-				</div>
-				
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Pago a promotora</label>
-					<div class="col-sm-8"><input id="pagopromotora" name="pagopromotora" type="text" class="form-control"  autofocus></div>				
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Pago a coordinador</label>
-					<div class="col-sm-8"><input id="pagocoordinador" name="pagocoordinador" type="text" class="form-control"  autofocus></div>				
-				</div>
-
-				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Logística</label>
-					<div class="col-sm-8"><input id="logistica" name="logistica" type="text" class="form-control"  autofocus></div>				
-				</div>
-	
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-8">
-						<input id="" type="submit" class="btn btn-primary" value="Guardar">
-						<input id="btn_listar" type="button" class="btn btn-primary" value="Listar">
+		
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8">
+							<input id="" type="submit" class="btn btn-primary" value="Guardar">
+							<input id="btn_listar" type="button" class="btn btn-primary" value="Listar">
+						</div>
 					</div>
+				</form>
+				<div class="col-sm-offset-2 col-sm-8">
+					<p class="mensaje"></p>
 				</div>
-			</form>
-			<div class="col-sm-offset-2 col-sm-8">
-				<p class="mensaje"></p>
-			</div>
 			
 		</div>
 	</div>
@@ -206,17 +89,8 @@
 					<thead>
 						<tr>								
 							<th>Nombre</th>
-							<th>Hora inicio</th>
-							<th>Hora fin</th>
-							<th>Fecha</th>
-							<th>Estado</th>
-							<th>Marca</th>
-							<th>Costo a marca</th>
-							<th>Pago a promotora</th>
-							<th>Pago a coordinador</th>
-							<th>Logística</th>
-							<th>Promotora</th>
-							<th>Coordinador</th>
+							<th>Contacto</th>
+							<th>Número de contacto</th>
 							<th></th>											
 						</tr>
 					</thead>					
@@ -226,7 +100,7 @@
 	</div>
 	<div>
 		<form id="frmEliminarUsuario" action="" method="POST">
-			<input type="hidden" id="idusuario" name="idusuario" value="">
+			<input type="hidden" id="id" name="id" value="">
 			<input type="hidden" id="opcion" name="opcion" value="eliminar">
 			<!-- Modal -->
 			<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
@@ -248,6 +122,8 @@
 			</div>
 			<!-- Modal -->
 		</form>
+	</div>
+
 	</div>
 	
 	<script src="js/jquery-1.12.3.js"></script>
@@ -282,7 +158,7 @@
 				var frm = $(this).serialize();
 				$.ajax({
 					method: "POST",
-					url: "php/eventos/guardar.php",
+					url: "php/clientes/guardar.php",
 					data: frm
 				}).done( function( info ){
 					console.log( info );
@@ -296,12 +172,12 @@
 
 		var eliminar = function(){
 			$("#eliminar-usuario").on("click", function(){
-				var idusuario = $("#frmEliminarUsuario #idusuario").val(),
+				var id = $("#frmEliminarUsuario #id").val(),
 					opcion = $("#frmEliminarUsuario #opcion").val();
 				$.ajax({
 					method:"POST",
-					url: "php/eventos/guardar.php",
-					data: {"idusuario": idusuario, "opcion": opcion}
+					url: "php/clientes/guardar.php",
+					data: {"id": id, "opcion": opcion}
 				}).done( function( info ){
 					var json_info = JSON.parse( info );
 					mostrar_mensaje( json_info );
@@ -339,18 +215,9 @@
 
 		var limpiar_datos = function(){
 			$("#horainicio").val("registrar");
-			$("#horafin").val("");
-			$("#nombreevento").val("").focus();
-			$("#fecha").val("");
-			$("#estado").val("");
-			$("#id_cliente").val("");
-			$("#costomarca").val("");
-			$("#pagopromotora").val("");
-			$("#pagocoordinador").val("");
-			$("#logistica").val("");
-
-			$("#id_coordinador").val("");
-			$("#id_promotora").val("");
+			$("#nombre").val("");
+			$("#contacto").val("").focus();
+			$("#numerocontacto").val("");
 			
 		}
 
@@ -363,21 +230,12 @@
 				"destroy":true,
 				"ajax":{
 					"method":"POST",
-					"url": "php/eventos/listar.php"
+					"url": "php/clientes/listar.php"
 				},
 				"columns":[
-					{"data":"nombreevento"},
-					{"data":"horainicio"},
-					{"data":"horafin"},
-					{"data":"fecha"},
-					{"data":"estado"},
-					{"data":"nombreCliente"},
-					{"data":"costomarca"},
-					{"data":"pagopromotora"},
-					{"data":"pagocoordinador"},
-					{"data":"logistica"},
-					{"data":"nombrePromotora"},
-					{"data":"nombreCoordinador"},
+					{"data":"nombre"},
+					{"data":"contacto"},
+					{"data":"numerocontacto"},
 					{"defaultContent": "<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
 				],
 				"language": idioma_espanol,
@@ -429,20 +287,11 @@
 				
 				var data = table.row( $(this).parents("tr") ).data();
 				
-				var idusuario = $("#idusuario").val( data.id ),
-				nombreevento = $("#nombreevento").val( data.nombreevento ),
-				horainicio = $("#horainicio").val( data.horainicio ),
-				horafin = $("#horafin").val( data.horafin ),
-				fecha = $("#fecha").val( data.fecha ),
-				id_cliente = $("#id_cliente").val( data.id_cliente ),
-				costomarca = $("#costomarca").val( data.costomarca ),
-				pagopromotora = $("#pagopromotora").val( data.pagopromotora ),
-				pagocoordinador = $("#pagocoordinador").val( data.pagocoordinador ),
-				logistica = $("#logistica").val( data.logistica ),
-				estado = $("#estado").val( data.estado ),
+				var id = $("#id").val( data.id ),
+				nombre = $("#nombre").val( data.nombre ),
+				contacto = $("#contacto").val( data.contacto ),
+				numerocontacto = $("#numerocontacto").val( data.numerocontacto ),
 				
-				id_promotora = $("#id_promotora").val( data.id_promotora ),
-				id_coordinador = $("#id_coordinador").val( data.id_coordinador ),
 
 				opcion = $("#opcion").val("modificar");
 				
@@ -454,7 +303,7 @@
 		var obtener_id_eliminar = function(tbody, table){
 			$(tbody).on("click", "button.eliminar", function(){
 				var data = table.row( $(this).parents("tr") ).data();
-				var idusuario = $("#frmEliminarUsuario #idusuario").val( data.id );
+				var id = $("#frmEliminarUsuario #id").val( data.id );
 			});
 		}
 
