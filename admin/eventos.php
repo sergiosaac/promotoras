@@ -155,12 +155,23 @@
 				<div class="form-group">
 					<label for="apellidos" class="col-sm-2 control-label">Coordinador encargado</label>
 					<div class="col-sm-8">
+
+
+						<div class="checkbox">
+							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
+								<label><input type="checkbox" value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </label>
+							<?php } ?>
+						</div>
+
+
 						<select class="form-control" name="id_coordinador" id="id_coordinador">
 							<option value="" selected > Elige una coordnador </option>
 							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
 								<option value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </option>	
 							<?php } ?>
 						</select>
+
+
 					</div>
 				</div>
 
@@ -282,6 +293,8 @@
 			$("form").on("submit", function(e){
 				e.preventDefault();
 				var frm = $(this).serialize();
+				console.log(frm);
+
 				$.ajax({
 					method: "POST",
 					url: "php/eventos/guardar.php",

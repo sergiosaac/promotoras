@@ -80,19 +80,19 @@
 				</h4>
 			  </a>
 
-			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
+			  <a href="#" style="padding: 30px;" class="list-group-item noTodavia">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Generar reporte
 				</h4>
 			  </a>
 
-			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
+			  <a href="factura/index.php" style="padding: 30px;" class="list-group-item">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/10/Billing-icon.png"> 	Crear factura
 				</h4>
 			  </a>
 
-			  <a class="noTodavia" href="#" style="padding: 30px;" class="list-group-item">
+			  <a href="#" style="padding: 30px;" class="list-group-item noTodavia">
 			    <h4 class="list-group-item-heading">
 			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/11/document-file-icon.png"> Historial de facturas
 				</h4>
