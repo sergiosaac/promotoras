@@ -269,6 +269,27 @@
 		</form>
 	</div>
 	</div>
+
+
+	<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Inconvenientes al cargar formulario:</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p id="contenidoAyudamodal">Buenas, gracias por utilizar el sistema.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
 	
 	<script src="js/jquery-1.12.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -300,7 +321,16 @@
 			$("form").on("submit", function(e){
 				e.preventDefault();
 				var frm = $(this).serialize();
-				console.log(frm);
+				
+				//validaciones hasoooo
+				var contenidoAyudamodal = '';
+
+
+
+				if (false) {
+					$("#myModal").modal("show");
+					$('#contenidoAyudamodal').html('huleee');
+				}
 
 				$.ajax({
 					method: "POST",

@@ -12,7 +12,7 @@
     if ($_POST['usuario'] == 'admin' && $_POST['password'] == 'admin') {
       
       $_SESSION['logueado'] = $_POST['usuario'];
-      header('Location: /admin');
+      header('Location: /admin/estado-agencia.php');
     } else {
 
       $incorrecto = 'Pass incorrecto!';

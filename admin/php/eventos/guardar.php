@@ -15,8 +15,16 @@
 		$pagocoordinador = $_POST["pagocoordinador"];
 		$logistica = $_POST["logistica"];
 		$nombreevento = $_POST["nombreevento"];
-		$id_promotora = $_POST["id_promotora"];
+		//$id_promotora = $_POST["id_promotora"];
 		$id_coordinador = $_POST["id_coordinador"];
+
+		if (!isset($_POST["id_promotora"])) {
+			$informacion["respuesta"] = "VACIO";
+			echo json_encode($informacion);
+
+			return;
+
+		}
 
 		//opa
 		$id_promotora = implode(",", $_POST["id_promotora"]);
