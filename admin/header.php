@@ -29,7 +29,7 @@
 
 		<li>
 			<a href="estado-agencia.php"> 
-				<span class="glyphicon glyphicon-file"></span> Estado rápido
+				<span class="glyphicon glyphicon-file"></span> Resumen
 			</a>
 		</li>
 

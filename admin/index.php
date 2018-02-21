@@ -81,7 +81,7 @@
 
 			  <a href="estado-agencia.php" style="padding: 30px;" class="list-group-item noTodavia">
 			    <h4 class="list-group-item-heading">
-			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Estado rápido de agencia
+			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Resumen
 				</h4>
 			  </a>
 
