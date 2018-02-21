@@ -45,7 +45,7 @@
 				<form class="form-horizontal" action="" method="POST">
 					<div class="form-group">
 						<h3 class="col-sm-offset-2 col-sm-8 text-center">					
-						Formulario de Registro de coordinadores</h3>
+						Formulario de registro de clientes</h3>
 					</div>
 					<input type="hidden" id="id" name="id" value="0">
 					<input type="hidden" id="opcion" name="opcion" value="registrar">

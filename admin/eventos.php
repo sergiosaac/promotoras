@@ -96,7 +96,7 @@
 			<form class="form-horizontal" action="" method="POST">
 				<div class="form-group">
 					<h3 class="col-sm-offset-2 col-sm-8 text-center">					
-					Formulario de Registro de Eventos</h3>
+					Formulario de registro de eventos</h3>
 				</div>
 				<input type="hidden" id="idusuario" name="idusuario" value="0">
 				<input type="hidden" id="opcion" name="opcion" value="registrar">
@@ -493,10 +493,11 @@
 				logistica = $("#logistica").val( data.logistica ),
 				estado = $("#estado").val( data.estado ),
 				
-				id_promotora = $("#id_promotora").val( data.id_promotora ),
+				//id_promotora = $("#id_promotora").val( data.id_promotora ),
 				id_coordinador = $("#id_coordinador").val( data.id_coordinador ),
 
 				opcion = $("#opcion").val("modificar");
+				
 				
 				$("#cuadro2").slideDown("slow");
 				$("#cuadro1").slideUp("slow");
