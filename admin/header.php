@@ -26,6 +26,13 @@
 				<span class="glyphicon glyphicon-phone"></span> Clientes
 			</a>
 		</li>
+
+		<li>
+			<a href="estado-agencia.php"> 
+				<span class="glyphicon glyphicon-file"></span> Estado rápido
+			</a>
+		</li>
+
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">

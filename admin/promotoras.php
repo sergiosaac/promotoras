@@ -8,6 +8,37 @@
 
 	require('php/conexion.php');
 
+	$array = array();
+
+	$query = "SELECT * FROM promotoras;";
+	$resultado = mysqli_query($conexion, $query);
+	
+	if( !$resultado )
+		die("Error, no se ejecutó la consulta.");
+	else{
+		$array["data"] = [];//devuelve un arreglo vacio por si no hay registros en la base de datos
+		while ( $data = mysqli_fetch_assoc($resultado)){
+			$array["promotoras"][] = $data; //array_map("utf8_encode", $data); usar esta función por si no te muestra nada de datos, ya que, hay conflictos con los caracteres raros
+		}
+	}
+
+	mysqli_free_result( $resultado );
+
+	$promotorasDisponibles = [];
+	$promotorasOcupadas = [];
+
+	foreach ($array['promotoras'] as $promotora ) {
+
+		if ($promotora['estado'] == 'Disponible') {
+			array_push($promotorasDisponibles, $promotora);
+		} else {
+			array_push($promotorasOcupadas, $promotora);
+		}
+	}
+	
+
+	//-----
+
 	
 
 ?>
@@ -41,6 +72,30 @@
 
 		</h3>
 
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<ul class="list-group">
+				  <li class="list-group-item list-group-item-success">Disponibles</li>
+
+				  <?php foreach ($promotorasDisponibles as $promotora ) { ?>
+				  	<li class="list-group-item"><?= $promotora['nombre'].' '.$promotora['apellidos'] ?></li>
+				  <?php } ?>
+
+				</ul>	
+			</div>
+
+			<div class="col-md-6">
+				<ul class="list-group">
+				  <li class="list-group-item list-group-item-warning">Ocupadas</li>
+				  
+				  <?php foreach ($promotorasOcupadas as $promotora ) { ?>
+				  	<li class="list-group-item"><?= $promotora['nombre'].' '.$promotora['apellidos'] ?></li>
+				  <?php } ?>
+
+				</ul>
+			</div>
+		</div>
+
 		<div id="cuadro2" class="col-sm-12 col-md-12 col-lg-12 ocultar">
 			<form class="form-horizontal" action="" method="POST">
 				<div class="form-group">
@@ -69,9 +124,14 @@
 				</div>
 
 				<div class="form-group">
-					<label for="nombre" class="col-sm-2 control-label">Estado</label>
-					<div class="col-sm-8"><input id="estado" name="estado" type="text" class="form-control"  autofocus>
-					</div>		
+					<label for="apellidos" class="col-sm-2 control-label">Coordinador encargado</label>
+					<div class="col-sm-8">
+
+						<select class="form-control" name="estado" id="estado">
+							<option value="Disponible" selected > Disponible </option>
+							<option value="Ocupada" > Ocupada </option>
+						</select>
+					</div>
 				</div>
 
 				
@@ -179,7 +239,11 @@
 					limpiar_datos();
 					listar();
 				});
+
+				location.reload();
 			});
+
+
 		}
 
 		var eliminar = function(){
@@ -195,6 +259,7 @@
 					mostrar_mensaje( json_info );
 					limpiar_datos();
 					listar();
+					location.reload();
 				});
 			});
 		}

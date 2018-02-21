@@ -16,7 +16,7 @@
 		foreach ($array['data'] as &$registro) {
 
 			$registro['nombreCliente'] = obtenerCliente($conexion,$registro['id_cliente'])['nombre'];
-			$registro['nombrePromotora'] = obtenerPromotora($conexion,$registro['id_promotora'])['nombre']." ".obtenerPromotora($conexion,$registro['id_promotora'])['apellidos'];
+			$registro['nombrePromotora'] = implode(",", obtenerPromotora($conexion,explode(",",$registro['id_promotora'])));
 			$registro['nombreCoordinador'] = obtenerCoordinador($conexion,$registro['id_coordinador'])['nombre']." ".obtenerCoordinador($conexion,$registro['id_coordinador'])['apellidos'];
 		}
 
@@ -36,11 +36,30 @@
 		return mysqli_fetch_assoc($resultado);
 	}
 
-	function obtenerPromotora($conexion,$id)
+	function obtenerPromotora($conexion,$ids)
 	{
-		$query = "SELECT * FROM promotoras WHERE id=$id";
-		$resultado = mysqli_query($conexion, $query);
-		return mysqli_fetch_assoc($resultado);
+
+		$promotoras = [];
+
+		foreach ($ids as $value) {
+			
+			$query = "SELECT * FROM promotoras WHERE id=$value";
+			$resultado = mysqli_query($conexion, $query);
+
+			array_push($promotoras, mysqli_fetch_assoc($resultado));
+
+		}
+
+		$nombrePromotoraPasarArray = [];
+
+		foreach ($promotoras as $value) {
+			
+			$nombrePromotoraPasar = $value['nombre'].' '.$value['apellidos'].' ';
+
+			array_push($nombrePromotoraPasarArray, $nombrePromotoraPasar);
+		}
+
+		return $nombrePromotoraPasarArray;
 	}
 
 	function obtenerCoordinador($conexion,$id)

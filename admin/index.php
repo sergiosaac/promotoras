@@ -27,7 +27,6 @@
 
 		<?php require 'header.php'; ?>
 	
-		
 		<div class="container">
         <!-- Example row of columns -->
         <div class="row">
@@ -80,9 +79,9 @@
 				</h4>
 			  </a>
 
-			  <a href="#" style="padding: 30px;" class="list-group-item noTodavia">
+			  <a href="estado-agencia.php" style="padding: 30px;" class="list-group-item noTodavia">
 			    <h4 class="list-group-item-heading">
-			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Generar reporte
+			    	<img height="60" width="60" src="http://www.teckiosoftware.com/images/icono_reportes.png"> 	Estado rápido de agencia
 				</h4>
 			  </a>
 
@@ -92,11 +91,6 @@
 				</h4>
 			  </a>
 
-			  <a href="#" style="padding: 30px;" class="list-group-item noTodavia">
-			    <h4 class="list-group-item-heading">
-			    	<img height="60" width="60" src="http://es.seaicons.com/wp-content/uploads/2015/11/document-file-icon.png"> Historial de facturas
-				</h4>
-			  </a>
 
 			</div>
 
@@ -157,10 +151,10 @@
 	<script type="text/javascript">
 		
 		$(document).ready(function () {
-		    $("#myModal").modal("show");
+		    //$("#myModal").modal("show");
 
 		    $('.noTodavia').click(function () {
-				$("#myModal").modal("show");		    	
+				//$("#myModal").modal("show");		    	
 		    });
 		});
 		    

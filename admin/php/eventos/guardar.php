@@ -18,7 +18,11 @@
 		$id_promotora = $_POST["id_promotora"];
 		$id_coordinador = $_POST["id_coordinador"];
 
+		//opa
+		$id_promotora = implode(",", $_POST["id_promotora"]);
+
 	}
+
 
 	$informacion = [];
 

@@ -143,12 +143,29 @@
 				<div class="form-group">
 					<label for="apellidos" class="col-sm-2 control-label">Promotora</label>
 					<div class="col-sm-8">
-						<select class="form-control" name="id_promotora" id="id_promotora">
-							<option value="" selected > Elige una promotora </option>
+
+						<div class="checkbox">
 							<?php foreach ($array['promotoras'] as $promotora ) { ?>
-								<option value="<?= $promotora['id'] ?>"> <?= $promotora['nombre'].' '.$promotora['apellidos'] ?> </option>	
+								
+								<?php if($promotora['estado'] == 'Disponible' ){ ?>
+									<label>
+										<input type="checkbox" 
+											   value="<?= $promotora['id'] ?>"
+											   name="id_promotora[]"
+										> 
+
+										<?= $promotora['nombre'].' '.$promotora['apellidos'] ?>
+									
+									</label>
+									<br>
+
+								<?php } ?>
+
+								
 							<?php } ?>
-						</select>
+						</div>
+
+					
 					</div>
 				</div>
 
@@ -156,22 +173,12 @@
 					<label for="apellidos" class="col-sm-2 control-label">Coordinador encargado</label>
 					<div class="col-sm-8">
 
-
-						<div class="checkbox">
-							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
-								<label><input type="checkbox" value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </label>
-							<?php } ?>
-						</div>
-
-
 						<select class="form-control" name="id_coordinador" id="id_coordinador">
 							<option value="" selected > Elige una coordnador </option>
 							<?php foreach ($array['coordinadores'] as $coordinadore ) { ?>
 								<option value="<?= $coordinadore['id'] ?>"> <?= $coordinadore['nombre'].' '.$coordinadore['apellidos'] ?> </option>	
 							<?php } ?>
 						</select>
-
-
 					</div>
 				</div>
 
